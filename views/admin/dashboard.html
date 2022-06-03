@@ -1,0 +1,74 @@
+{% extends "admin/wrapper.html" %}
+
+{% block main %}
+
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+  <div class="card text-center border-0 card-margin">
+    <div class="card-body">
+      <h4 class="card-title">The section is about to add new election nominee</h4>
+        <p class="card-text">Following rules must be met in order to add nominee. Please keep in mind that all actions requires full administrator privilages and uses all provided data in order to tract every action.</p>
+        <a href="/admin/dashboard/candidates/add" class="btn btn-link">Add nominee</a>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for candidate in candidates %}
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-header bg-transparent border-0">
+        <h2>{{candidate.number}}</h2>
+      </div>
+      <div class="card-body">
+        <h3>{{candidate.forename}} {{candidate.surname}}</h3>
+        <br>
+        <h4>{{candidate.party}}</h4>
+      </div>
+      <div class="card-footer bg-transparent border-0">
+        <a href="/admin/dashboard/candidates/edit/{{candidate.candidate_id}}" class="btn btn-link">Edit</a>
+        <a href="/admin/dashboard/candidates/delete/{{candidate.candidate_id}}" class= "btn btn-link">Delete</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for candidate in candidates %}
+  <div class="col">
+  <div class="card text-center">
+    <div class="card-header bg-transparent border-0">
+      <h2>{{candidate.number}}</h2>
+    </div>
+    <div class="card-body">
+      <h3>{{candidate.name}} {{candidate.surname}}</h3>
+      <br>
+      <h4>{{candidate.party}}</h4>
+    </div>
+    <div class="card-footer bg-transparent border-0">
+      <a href="/admin/dashboard/candidates/edit/{{candidate.candidate_id}}" class="btn btn-link">Edit</a>
+      <a href="/admin/dashboard/candidates/delete/{{candidate.candidate_id}}" class= "btn btn-link">Delete</a>
+    </div>
+  </div>
+</div>
+</div>
+  {% endfor %}
+</div>
+-->
+
+{% endblock %}
+
+
+

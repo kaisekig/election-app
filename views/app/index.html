@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+
+{% block main %}
+
+    <h1 class="title">Election candidates</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-8">
+        {% for candidate in candidates %}
+        <div class="col align-items-stretch">
+          <div class="card card-background text-center border-0 shadow p-3 mb-5 rounded">
+            <div class="card-header border-0 bg-transparent">
+                <h2>{{candidate.number}}</h2>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{{candidate.forename}} {{candidate.surname}}</h3>
+              <h4 class="card-text">{{candidate.party}}</h4>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

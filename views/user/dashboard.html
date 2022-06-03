@@ -1,0 +1,29 @@
+{% extends "user/nav.html" %}
+
+{% block main %}
+    <div class="card card-heading border-0" style="max-width: 55rem;">
+        <h2>Election process takes just a few seconds! Be aware that you can vote only one time.</h2>
+    </div>
+    
+    {% for candidate in candidates %}
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+        <div class="card card-margin text-center shadow-sm p-3 mb-5 bg-body rounded" style="max-width: 34rem;">
+            <div class="card-header border-0 bg-transparent">
+                <h2>{{candidate.number}}</h2>
+            </div>
+            <div class="card-body">
+                <h3>{{candidate.forename}} {{candidate.surname}}</h3>
+                <h4>{{candidate.party}}</h4>
+            </div>
+            <div class="card-footer border-0 bg-transparent">
+                <form action="/user/dashboard" method="post">
+                    <input type="hidden" name="id" value="{{candidate.candidate_id}}">
+                    <button type="submit" class="btn btn-link">Vote</button>
+                </form>  
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

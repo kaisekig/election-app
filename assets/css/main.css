@@ -1,0 +1,22 @@
+.wrapper-container {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.card-margin {
+    margin-top: 0.3in;
+}
+
+.title {
+    margin: 1in 0;
+}
+
+.auth-margin {
+    margin-top: 100px;
+}
+
+.card-background {
+    background-color: #0385e6;
+    color: #fff;
+
+}

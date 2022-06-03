@@ -1,0 +1,49 @@
+{% extends "template.html" %}
+
+{% block main %}
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+  <div class="card border-0 auth-margin" style="max-width: 34rem;">
+    <div class="card-header border-0 bg-transparent">
+      <h3>Register</h3>
+    </div>
+    <div class="card-body">
+      <form action="/auth/register" method="post">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="form-text">Create the right username that identifies you.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">ID</label>
+          <input type="text" name="identifier" class="form-control" id="exampleInputPassword1" required>
+          <div id="emailHelp" class="form-text">Unique identifier number that matches with your ID card.</div>
+        </div>
+       
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Password</label>
+            <input type="password" name="password1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text">Crete a strong password!</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Repeat password</label>
+            <input type="password" name="password2" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text">Repeat the password that should match with previous one.</div>
+        </div>
+
+        <button type="submit" class="btn btn-link">Register</button>
+    </form>
+    </div>
+    {% if message != null %}
+    <div class="card-footer border-0 bg-transparent">
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

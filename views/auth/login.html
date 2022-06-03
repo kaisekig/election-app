@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+
+{% block main %}
+<div class="row justify-content-center">
+<div class="col-sm-6">
+<div class="card border-0 auth-margin" style="max-width: 34rem;">
+    <div class="card-header border-0 bg-transparent">
+        <h3>Sign in</h3>
+    </div>
+    <div class="card-body">
+        <form action="/auth/login" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+              <div id="emailHelp" class="form-text">Use the right username to access.</div>
+            </div>
+           
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <div id="emailHelp" class="form-text">Use the right password to access.</div>
+            </div>
+            <button type="submit" class="btn btn-link">Log In</button>
+        </form>
+    </div>
+    {% if message != null %}
+    <div class="card-footer border-0 bg-transparent">
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

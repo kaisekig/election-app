@@ -1,0 +1,46 @@
+{% extends "admin/wrapper.html" %}
+
+{% block main %}
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+    <div class="card border-0" style="width: 34rem;">
+        <div class="card-header border-0 bg-transparent">
+            <h3>
+                Nominee information
+            </h3>
+        </div>
+
+        <div class="card-body">
+            <form action="/admin/dashboard/candidates/add" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name</label>
+                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                  <div id="emailHelp" class="form-text">Full first name of nominee.</div>
+                </div>
+    
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Surname</label>
+                  <input type="text" name="surname" class="form-control" id="exampleInputPassword1" required>
+                  <div id="emailHelp" class="form-text">In case nominee has more than one, all surnames must be added in right order.</div>
+                </div>
+               
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Political party</label>
+                    <input type="text" name="party" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                    <div id="emailHelp" class="form-text">Acronym.</div>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Candidate number</label>
+                    <input type="text" name="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                    <div id="emailHelp" class="form-text">The number under which  nomineee is running.</div>
+                </div>
+    
+                <button type="submit" class="btn btn-link">Add</button>
+            </form>
+        </div>
+       
+    </div>
+    </div>
+</div>
+{% endblock %}
