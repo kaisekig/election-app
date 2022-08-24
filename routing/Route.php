@@ -48,7 +48,8 @@
                 preg_match_all("|(\d)+|", $url, $matches);
             }
     
-            if ($matches[0][0]) {
+            # $matches[0][0] 
+            if (count($matches[0]) != 0) {
                 array_push($args, $matches[0][0]);
     
                 if (count($matches[0]) > 1) {
