@@ -87,23 +87,18 @@
             $party = filter_input(INPUT_POST, "party", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $candidateModel = new CandidateModel($this->getConnect());
-            
-            # UQ Index forename, surname
-            $candidate = $candidateModel->getCandidateByFullName($name, $surname);
-            if ($candidate) {
-                $this->view("./views", "/exception/500.html", [
-                    "message" => "Candidate already exists!"
-                ]);
-                return;
-            }
 
             # UQ Idenx number
-            $candidate = $candidateModel->getByFieldName('number', $number);
-            if ($candidate) {
-                $this->view("./views", "/exception/500.html", [
-                    "message" => "Candidate number already taken!"
-                ]);
-                return;
+            $candidate = $candidateModel->getById($id);
+            if ($candidate->number != $number) {
+                $exists = $candidateModel->getByFieldName('number', $number);
+
+                if ($exists) {
+                    $this->view("./views", "/exception/500.html", [
+                        "message" => "Candidate number already taken!"
+                    ]);
+                    return;
+                }
             }
             
             $response = $candidateModel->edit($id, [

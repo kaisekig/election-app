@@ -109,7 +109,11 @@
             $sql = "UPDATE {$tableName} SET {$editString} WHERE {$tableName}_id = ?;";
             $prep = $this->connection->connect()->prepare($sql);
             
-            return $prep->execute($values);
+            try {
+                return $prep->execute($values);
+            } catch (\PDOException $except) {
+                return null;
+            }
         }
 
         public function delete(int $id) {
