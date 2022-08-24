@@ -85,9 +85,8 @@
             $sql = "INSERT INTO {$tableName} ({$fields}) VALUES ({$questionMarks});";
 
             $prep = $this->connection->connect()->prepare($sql);
-            $vrednost = array_values($data);
             
-            $result = $prep->execute($vrednost);
+            $result = $prep->execute(array_values($data));
 
             if (!$result) {
                 return null;
@@ -119,10 +118,15 @@
             $sql = "DELETE FROM " . $tableName . " WHERE " . $tableName . "_id = ?;";
             $prep = $this->getConnect()->connect()->prepare($sql);
 
-            return $prep->execute([$id]);
+            # In case of foreign key constraint
+            try {
+                return $prep->execute([$id]);
+            } catch (\PDOException $except) {
+                return $except->getMessage();
+            }
         }
         
-        private function getTableName(): string {
+        protected function getTableName(): string {
             $fullClassName = static::class;
 
             $matches = [];

@@ -16,6 +16,9 @@
         )
         {
             $this->sessionId       = filter_input(INPUT_COOKIE, "SESSION_COOKIE", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if ($this->sessionId === null) {
+                $this->sessionId = "";
+            }
             $this->sessionId       = preg_replace("|[^A-Za-z0-9]|", "", $this->sessionId);
 
             $this->sessionData         = (object) [];

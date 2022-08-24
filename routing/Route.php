@@ -15,10 +15,20 @@
         }
 
         public function isMatch(?string $url, string $method) {
+            # Passing null to parameter #2 ($subject) of type string is deprecated
+            if ($url === null) {
+                $url = "";
+
+                if (!preg_match($this->url, $url)) {
+                    return false;
+                }
+            }
+
             if (!preg_match($this->url, $url)) {
                 return false;
             }
-
+        
+            
             if (!preg_match("|^" . $this->method .  "$|", $method)) {
                 return false;
             }
@@ -30,10 +40,12 @@
             $matches = [];
             $args    = [];
     
-            preg_match_all("|(\d)+|", $url, $matches);
-    
-            if ($matches[0] === []) {
-                return $args;
+            if ($url === null) {
+                $url = "";
+
+                preg_match_all("|(\d)+|", $url, $matches);
+            } else {
+                preg_match_all("|(\d)+|", $url, $matches);
             }
     
             if ($matches[0][0]) {

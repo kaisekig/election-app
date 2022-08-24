@@ -9,7 +9,7 @@
             $this->allowToRoleAdmin();
 
             $candidateModel = new CandidateModel($this->getConnect());
-            $candidates = $candidateModel->getAll();
+            $candidates = $candidateModel->getAllCandidatesAscendingByNumber();
 
             $this->view("./views", "/admin/dashboard.html", [
                 "candidates" => $candidates
@@ -31,6 +31,25 @@
             $candidateNumber = filter_input(INPUT_POST, "number", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $candidateModel = new CandidateModel($this->getConnect());
+            
+            # UQ Index forename, surname
+            $candidate = $candidateModel->getCandidateByFullName($name, $surname);
+            if ($candidate) {
+                $this->view("./views", "/exception/500.html", [
+                    "message" => "Candidate already exists!"
+                ]);
+                return;
+            }
+
+            # UQ Idenx number
+            $candidate = $candidateModel->getByFieldName('number', $candidateNumber);
+            if ($candidate) {
+                $this->view("./views", "/exception/500.html", [
+                    "message" => "Candidate number already taken!"
+                ]);
+                return;
+            }
+            
             $candidateId = $candidateModel->add(
                 [
                     "forename"    => $name,
@@ -68,6 +87,25 @@
             $party = filter_input(INPUT_POST, "party", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $candidateModel = new CandidateModel($this->getConnect());
+            
+            # UQ Index forename, surname
+            $candidate = $candidateModel->getCandidateByFullName($name, $surname);
+            if ($candidate) {
+                $this->view("./views", "/exception/500.html", [
+                    "message" => "Candidate already exists!"
+                ]);
+                return;
+            }
+
+            # UQ Idenx number
+            $candidate = $candidateModel->getByFieldName('number', $number);
+            if ($candidate) {
+                $this->view("./views", "/exception/500.html", [
+                    "message" => "Candidate number already taken!"
+                ]);
+                return;
+            }
+            
             $response = $candidateModel->edit($id, [
                 "forename" => $name,
                 "surname" => $surname, 

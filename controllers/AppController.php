@@ -7,7 +7,7 @@
     class AppController extends Controller {
         public function app() {
             $candidateModel = new CandidateModel($this->getConnect());
-            $candidates     = $candidateModel->getAll(); 
+            $candidates     = $candidateModel->getAllCandidatesAscendingByNumber(); 
 
             $this->view("./views", "/app/index.html", ["candidates" => $candidates]);
         }

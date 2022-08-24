@@ -11,7 +11,7 @@
             $this->allowToRoleUser();
 
             $candidateModel = new CandidateModel($this->getConnect());
-            $candidates = $candidateModel->getAll();
+            $candidates = $candidateModel->getAllCandidatesAscendingByNumber();
 
             $this->view("./views", "/user/dashboard.html", [
                 "candidates" => $candidates
