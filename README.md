@@ -14,7 +14,7 @@ Composer
 ### Clone repo
 
 Clone repository `git clone https://github.com/kaisekig/election-app.git` to the destination of your choice.\
-Move all files to the `htdocs`.
+Move all application content to the `htdocs` directory. It should be the root directory for app. 
 
 Inside htdocs execute `composer install` to install all required dependencies.
 
