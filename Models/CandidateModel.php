@@ -31,5 +31,19 @@
 
             return $prep->fetchAll(\PDO::FETCH_OBJ);
         }
+
+        public function getCandidateVotes() {
+            $tableName = $this->getTableName();
+
+            $sql  = "SELECT * FROM {$tableName} INNER JOIN vote ON candidate.candidate_id = vote.candidate_id;";
+            $prep = $this->getConnect()->connect()->prepare($sql);
+            $result = $prep->execute();
+            
+            if (!$result) {
+                return null;
+            }
+
+            return $prep->fetchAll(\PDO::FETCH_OBJ);
+        }
     }
 ?>

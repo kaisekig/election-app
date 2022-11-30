@@ -88,8 +88,19 @@
 
             $candidateModel = new CandidateModel($this->getConnect());
 
+            $relations = $candidateModel->getCandidateVotes();
+
             # UQ Idenx number
             $candidate = $candidateModel->getById($id);
+
+            foreach($relations as $relation) {
+                if ($relation->candidate_id === $candidate->candidate_id) {
+                    return $this->view("./views", "/exception/500.html", [
+                        "message" => "Can't change candidate that has been voted for!"
+                    ]);
+                }
+            }
+
             if ($candidate->number != $number) {
                 $exists = $candidateModel->getByFieldName('number', $number);
 
